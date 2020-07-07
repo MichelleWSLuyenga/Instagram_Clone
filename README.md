@@ -1,6 +1,11 @@
-# Instagram
+# Instagram Clone
 
-A new Flutter project.
+Learning to clone Instagram app
+
+
+
+
+
 
 ## Getting Started
 
