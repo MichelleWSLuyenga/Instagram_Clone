@@ -1,99 +1,47 @@
 import 'package:flutter/material.dart';
+import 'home.dart';
+import 'search.dart';
+import 'add.dart';
+import 'favorite.dart';
+import 'account.dart';
 
 void main() => runApp(MyApp());
 
 /// This Widget is the main application widget.
 class MyApp extends StatelessWidget {
-  static const String _title = 'Flutter Code Sample';
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: _title,
-      home: MyStatefulWidget(),
-    );
-  }
-}
-
-class MyStatefulWidget extends StatefulWidget {
-  MyStatefulWidget({Key key}) : super(key: key);
-
-  @override
-  _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
-}
-
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 3: Research',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 4: Finance',
-      style: optionStyle,
-    ),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Instagram', style: TextStyle(color: Colors.black),),
-        backgroundColor: Colors.white,
-      ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home,),
-            title: Text('Home'),
+      home: DefaultTabController(
+          length: 5,
+          child: Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              leading: Icon(Icons.photo_camera, color: Colors.black, size: 35,),
+              title: const Text('Instagram', style: TextStyle(color: Colors.black, fontSize: 25,),),
+              actions: <Widget>[Icon(Icons.near_me, color: Colors.black, size: 35,)],
+            ),
+            body: TabBarView(
+              children: [
+                Icon(Icons.home, size: 150,),
+                Icon(Icons.search, size: 150,),
+                Icon(Icons.add, size: 150,),
+                Icon(Icons.favorite_border, size: 150,),
+                Icon(Icons.account_circle, size: 150,),
+              ],
+            ),
+            bottomNavigationBar: TabBar(
+              tabs: <Widget>[
+                Tab(icon: Icon(Icons.home, size: 35,),),
+                Tab(icon: Icon(Icons.search, size: 35,),),
+                Tab(icon: Icon(Icons.add, size: 35,),),
+                Tab(icon: Icon(Icons.favorite_border, size: 35,),),
+                Tab(icon: Icon(Icons.account_circle, size: 35,),),
+              ],
+              labelColor: Colors.black,
+              unselectedLabelColor: Colors.grey,
+            ),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            title: Text('Search'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add),
-            title: Text('Post'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border),
-            title: Text('Favorite'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            title: Text('Profile'),
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.grey,
-        onTap: _onItemTapped,
       ),
     );
   }
